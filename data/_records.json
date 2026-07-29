@@ -7863,11 +7863,17 @@
         "percent": 100,
         "user": "liono"
       },
-         {
+      {
         "hz": 240,
         "link": "https://www.youtube.com/live/RqhJC_IC82s?si=B5VEGu8x4X3RfczN",
         "percent": 100,
         "user": "Slopes"
+      },
+      {
+        "hz": 240,
+        "link": "https://youtu.be/Se7DplILSNo",
+        "percent": 100,
+        "user": "Axolotl101"
       }
     ],
     "verifier": {
@@ -30297,6 +30303,12 @@
         "link": "https://www.youtube.com/watch?v=PDMQjvEoZfs",
         "percent": 100,
         "user": "maxler"
+      },
+      {
+        "hz": 240,
+        "link": "https://youtu.be/6Bb54T45UtE",
+        "percent": 100,
+        "user": "Matthew081510"
       }
     ],
     "verifier": {
@@ -49853,6 +49865,12 @@
         "link": "https://www.youtube.com/watch?v=-dtNwssGCcQ",
         "percent": 100,
         "user": "liono"
+      },
+      {
+        "hz": "240",
+        "link": "https://youtu.be/QsRlsUmtFS8?si=wUhmpIjI-G1tOJTe",
+        "percent": 100,
+        "user": "shafikdabest"
       }
     ],
     "verifier": {
