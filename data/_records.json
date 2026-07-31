@@ -3085,6 +3085,12 @@
         "link": "https://www.youtube.com/watch?v=vjwIOFgrQAM",
         "percent": 100,
         "user": "liono"
+      },
+           {
+        "hz": 720,
+        "link": "https://www.youtube.com/watch?v=PfZ2P9LA47M",
+        "percent": 100,
+        "user": "cdsxyt"
       }
     ],
     "verifier": {
@@ -4477,6 +4483,12 @@
         "link": "https://youtu.be/tMARSdbHfjs",
         "percent": 100,
         "user": "Raimby"
+      },
+           {
+        "hz": 240,
+        "link": "https://youtu.be/yG7tU_YBQ30",
+        "percent": 100,
+        "user": "Slopes"
       }
     ],
     "verifier": {
@@ -16983,7 +16995,14 @@
   },
   "Glacial Core": {
     "percentToQualify": 70,
-    "records": [],
+    "records": [
+          {
+        "hz": 240,
+        "link": "https://youtu.be/Rq6qDjbca-E",
+        "percent": 100,
+        "user": "Adhafera"
+      }
+    ],
     "verifier": {
       "verification": "https://www.youtube.com/watch?v=gKRCG9bAY8M",
       "verifier": "JakeEP"
@@ -17399,7 +17418,14 @@
   },
   "Grand Eclipse": {
     "percentToQualify": 66,
-    "records": [],
+    "records": [
+           {
+        "hz": 240,
+        "link": "https://youtu.be/_kMzc73f7mY?si=twSfnrvVaFsSEPXl",
+        "percent": 100,
+        "user": "BananaIgor17"
+      }
+    ],
     "verifier": {
       "verification": "https://www.youtube.com/watch?v=JFq_O9d4L3s",
       "verifier": "ivyteal"
