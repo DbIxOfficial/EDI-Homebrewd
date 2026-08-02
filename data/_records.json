@@ -26355,7 +26355,7 @@
           "percent": 100,
           "user": "macaca"
         },
-          {
+        {
           "hz": "360",
           "link": "https://www.youtube.com/watch?v=dx5SqQnOprA",
           "percent": 100,
@@ -27603,11 +27603,11 @@
     "percentToQualify": 66,
     "records": [
       {
-"hz": "240",
-"link": "https://youtu.be/1OZKMOKpwZA",
-"percent": 100,
-"user": "Adhafera"
-}
+        "hz": "240",
+        "link": "https://youtu.be/1OZKMOKpwZA",
+        "percent": 100,
+        "user": "Adhafera"
+      }
     ],
     "verifier": {
       "verification": "https://www.youtube.com/watch?v=2AgtU6buxd4",
@@ -51438,6 +51438,150 @@
     "verifier": {
       "verifier": "Jif",
       "verification": "https://www.youtube.com/watch?v=7xdLs8DiRWc"
+    },
+    "percentToQualify": 66
+  },
+  "Antarctic Lights": {
+    "records": [],
+    "verifier": {
+      "verifier": "Axinity",
+      "verification": "https://www.youtube.com/watch?v=Uue4ZRhVf-I"
+    },
+    "percentToQualify": 66
+  },
+  "Firework (Unnerfed) (FashRod)": {
+    "records": [],
+    "verifier": {
+      "verifier": "FashRod",
+      "verification": "https://www.youtube.com/watch?v=dwtEmre1QfE"
+    },
+    "percentToQualify": 66
+  },
+  "RSTUFF WORLD": {
+    "records": [],
+    "verifier": {
+      "verifier": "Jaco",
+      "verification": "https://www.youtube.com/watch?v=ub0T0jmKFWs"
+    },
+    "percentToQualify": 66
+  },
+  "IceCarbonDiabloX V2": {
+    "records": [],
+    "verifier": {
+      "verifier": "MaruiG",
+      "verification": "https://youtu.be/uCz7eXDj0lY?si=qDNt3Tz-E2QxKNtR"
+    },
+    "percentToQualify": 66
+  },
+  "horse paracosm III": {
+    "records": [],
+    "verifier": {
+      "verifier": "majin",
+      "verification": "https://youtu.be/k7eXVXD_hw0"
+    },
+    "percentToQualify": 66
+  },
+  "What You See": {
+    "records": [],
+    "verifier": {
+      "verifier": "CaramelT",
+      "verification": "https://www.youtube.com/watch?v=Sai0Hy9nFOI"
+    },
+    "percentToQualify": 66
+  },
+  "want u but yuri": {
+    "records": [],
+    "verifier": {
+      "verifier": "CatGirlSam",
+      "verification": "https://www.youtube.com/watch?v=2kSl2L24kY8"
+    },
+    "percentToQualify": 66
+  },
+  "Hopeless": {
+    "records": [],
+    "verifier": {
+      "verifier": "Aivan",
+      "verification": "https://www.youtube.com/watch?v=-zWsTYEm4js"
+    },
+    "percentToQualify": 66
+  },
+  "The Big black (SrGuillester)": {
+    "records": [],
+    "verifier": {
+      "verifier": "SrGuillester",
+      "verification": "https://www.youtube.com/watch?v=BKgO3rQxap0"
+    },
+    "percentToQualify": 66
+  },
+  "PISTOL": {
+    "records": [],
+    "verifier": {
+      "verifier": "4d9r",
+      "verification": "https://www.youtube.com/watch?v=ZoLshS5tbMA"
+    },
+    "percentToQualify": 66
+  },
+  "Ghost Realm": {
+    "records": [],
+    "verifier": {
+      "verifier": "WellNot",
+      "verification": "https://www.youtube.com/watch?v=pMqUmY6LmjA"
+    },
+    "percentToQualify": 66
+  },
+  "Idols (Old)": {
+    "records": [],
+    "verifier": {
+      "verifier": "Dorami",
+      "verification": "https://www.youtube.com/watch?v=EsKfImKvaFc"
+    },
+    "percentToQualify": 66
+  },
+  "Madness III": {
+    "records": [],
+    "verifier": {
+      "verifier": "themitryex",
+      "verification": "https://youtu.be/CtfYABbyvgE"
+    },
+    "percentToQualify": 66
+  },
+  "Cotidian": {
+    "records": [],
+    "verifier": {
+      "verifier": "Freikz",
+      "verification": "https://www.youtube.com/watch?v=xGNSm3tV9QU"
+    },
+    "percentToQualify": 66
+  },
+  "Shitty Cataclysm": {
+    "records": [],
+    "verifier": {
+      "verifier": "Noxces",
+      "verification": "https://www.youtube.com/watch?v=T6EkeKl_R1c"
+    },
+    "percentToQualify": 66
+  },
+  "Stereo Madness 6": {
+    "records": [],
+    "verifier": {
+      "verifier": "Aktimoose",
+      "verification": "https://www.youtube.com/watch?v=rLYJDPuhUns"
+    },
+    "percentToQualify": 66
+  },
+  "Weirder Trash": {
+    "records": [],
+    "verifier": {
+      "verifier": "reruchoupie",
+      "verification": "https://www.youtube.com/watch?v=Prz7qVXajrM"
+    },
+    "percentToQualify": 66
+  },
+  "Weird Trash (Outense)": {
+    "records": [],
+    "verifier": {
+      "verifier": "Outense",
+      "verification": "https://www.youtube.com/watch?v=_y9z-rXRUDs"
     },
     "percentToQualify": 66
   }
