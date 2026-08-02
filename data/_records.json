@@ -37947,7 +37947,14 @@
   },
   "The Plunge": {
     "percentToQualify": 66,
-    "records": [],
+    "records": [
+      {
+"hz": "240",
+"link": "https://youtu.be/WeWbwA42Ud0?si=7Ta_-yRbY9Wu7zTs",
+"percent": 100,
+"user": "Dylanadv"
+}
+    ],
     "verifier": {
       "verification": "https://www.youtube.com/watch?v=8gW1-_u1K0Y&t",
       "verifier": "GoKill"
