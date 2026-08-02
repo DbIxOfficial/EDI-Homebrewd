@@ -14472,6 +14472,12 @@
         "link": "https://www.youtube.com/watch?v=LdgzEVgOooE",
         "percent": 100,
         "user": "kas ia"
+      },
+      {
+        "hz": 240,
+        "link": "https://youtu.be/tQuDiU4Pvxw",
+        "percent": 100,
+        "user": "Adhafera"
       }
     ],
     "verifier": {
@@ -18365,7 +18371,14 @@
   },
   "Hephaestus": {
     "percentToQualify": 66,
-    "records": [],
+    "records": [
+      {
+        "hz": 240,
+        "link": "https://youtu.be/4bEUkeXnWeI",
+        "percent": 100,
+        "user": "Adhafera"
+      }
+    ],
     "verifier": {
       "verification": "https://www.youtube.com/watch?v=gSRPPF89en8",
       "verifier": "Blankb"
