@@ -3370,7 +3370,14 @@
   },
   "Ashley Graves": {
     "percentToQualify": 66,
-    "records": [],
+    "records": [
+      {
+        "hz": 240,
+        "link": "https://youtu.be/RsjvRSu3f2w",
+        "percent": 100,
+        "user": "macaca"
+      }
+    ],
     "verifier": {
       "verification": "https://www.youtube.com/watch?v=JSa3kVy8HKY",
       "verifier": "1rr3v3rs1bl3"
@@ -4489,6 +4496,12 @@
         "link": "https://youtu.be/yG7tU_YBQ30",
         "percent": 100,
         "user": "Slopes"
+      },
+      {
+        "hz": 240,
+        "link": "https://youtu.be/RsjvRSu3f2w",
+        "percent": 100,
+        "user": "macaca"
       }
     ],
     "verifier": {
@@ -4920,6 +4933,12 @@
         "link": "https://www.youtube.com/watch?v=h7JYTGAMZGM",
         "percent": 100,
         "user": "BlueGamer"
+      },
+      {
+        "hz": "144",
+        "link": "https://youtu.be/F_cOMAspq_g",
+        "percent": 100,
+        "user": "Meatballmoose"
       }
     ],
     "verifier": {
@@ -7886,6 +7905,12 @@
         "link": "https://youtu.be/Se7DplILSNo",
         "percent": 100,
         "user": "Axolotl101"
+      },
+      {
+        "hz": 240,
+        "link": "https://youtu.be/RsjvRSu3f2w",
+        "percent": 100,
+        "user": "macaca"
       }
     ],
     "verifier": {
@@ -7942,6 +7967,12 @@
         "link": "https://youtu.be/u9P3-qKf11Y",
         "percent": 100,
         "user": "nettniko"
+      },
+      {
+        "hz": 240,
+        "link": "https://youtu.be/RsjvRSu3f2w",
+        "percent": 100,
+        "user": "macaca"
       }
     ],
     "verifier": {
@@ -16768,6 +16799,12 @@
         "link": "https://youtu.be/hwTibcQOgck",
         "percent": 100,
         "user": "Slopes"
+      },
+      {
+        "hz": 240,
+        "link": "https://youtu.be/RsjvRSu3f2w",
+        "percent": 100,
+        "user": "macaca"
       }
     ],
     "verifier": {
@@ -26317,6 +26354,12 @@
           "link": "https://youtu.be/GFeJGGay8yU?t=548",
           "percent": 100,
           "user": "macaca"
+        },
+          {
+          "hz": "360",
+          "link": "https://www.youtube.com/watch?v=dx5SqQnOprA",
+          "percent": 100,
+          "user": "Nugbit"
         }
       ],
       "verifier": {
@@ -34460,6 +34503,12 @@
         "link": "https://www.youtube.com/watch?v=wo_STYDocXg",
         "percent": 100,
         "user": "abcpro"
+      },
+      {
+        "hz": 240,
+        "link": "https://youtu.be/RsjvRSu3f2w",
+        "percent": 100,
+        "user": "macaca"
       }
     ],
     "verifier": {
@@ -39033,6 +39082,12 @@
         "link": "https://youtu.be/8cF5FAAnIkE",
         "percent": 100,
         "user": "nettniko"
+      },
+      {
+        "hz": 240,
+        "link": "https://youtu.be/RsjvRSu3f2w",
+        "percent": 100,
+        "user": "macaca"
       }
     ],
     "verifier": {
@@ -43770,7 +43825,14 @@
   },
   "grey Cataclysm": {
     "percentToQualify": 66,
-    "records": [],
+    "records": [
+      {
+        "hz": 240,
+        "link": "https://youtu.be/RsjvRSu3f2w",
+        "percent": 100,
+        "user": "macaca"
+      }
+    ],
     "verifier": {
       "verification": "https://www.youtube.com/watch?v=G1mMvAu_1UE",
       "verifier": "† 𓆩Lexy𓆪 †"
@@ -50588,7 +50650,14 @@
     "percentToQualify": 66
   },
   "Catanouement": {
-    "records": [],
+    "records": [
+      {
+        "hz": 240,
+        "link": "https://youtu.be/RsjvRSu3f2w",
+        "percent": 100,
+        "user": "macaca"
+      }
+    ],
     "verifier": {
       "verifier": "MdabeMaster",
       "verification": "https://www.youtube.com/watch?v=qFXCnW_HP7E"
