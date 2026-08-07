@@ -60,6 +60,11 @@
         "link": "https://www.youtube.com/channel/UCVOGYTbaYEWEMTUloBeEwsw"
     },
     {
+        "role": "helper",
+        "name": "Agelio",
+        "link": "https://www.youtube.com/channel/UCigeP_5Ygwqe8kSOBC8IxYQ"
+    },
+    {
         "role": "dev",
         "name": "onellyn",
         "link": ""
