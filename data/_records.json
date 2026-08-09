@@ -179,6 +179,12 @@
         "link": "https://youtu.be/sz-wq2ktL4A",
         "percent": 100,
         "user": "Lanii"
+      },
+      {
+        "hz": 240,
+        "link": "https://youtu.be/lP60iorSe8E?si=yGIO_NlTBk9tbhW0",
+        "percent": 100,
+        "user": "† 𓆩Lexy𓆪 †"
       }
     ],
     "verifier": {
@@ -1194,6 +1200,12 @@
         "link": "https://youtu.be/EOVClfdeHcI",
         "percent": 100,
         "user": "Matthew081510"
+      },
+      {
+        "hz": 240,
+        "link": "https://www.youtube.com/watch?v=dUmkgO0B5i4",
+        "percent": 100,
+        "user": "† 𓆩Lexy𓆪 †"
       }
     ],
     "verifier": {
@@ -10910,7 +10922,14 @@
   },
   "DeCode x20": {
     "percentToQualify": 66,
-    "records": [],
+    "records": [
+      {
+        "hz": 240,
+        "link": "https://www.youtube.com/watch?v=SQylaYiLt18",
+        "percent": 100,
+        "user": "† 𓆩Lexy𓆪 †"
+      }
+    ],
     "verifier": {
       "verification": "https://www.youtube.com/watch?v=xyG-vwYrm5Y",
       "verifier": "TheShadowRealm"
@@ -15336,6 +15355,12 @@
         "link": "https://www.youtube.com/watch?v=3vaFseCMpHc",
         "percent": 100,
         "user": "Fiszy"
+      },
+      {
+        "hz": 240,
+        "link": "https://www.youtube.com/watch?v=3oYdo50bEGQ",
+        "percent": 100,
+        "user": "† 𓆩Lexy𓆪 †"
       }
     ],
     "verifier": {
@@ -18225,6 +18250,12 @@
         "link": "https://www.youtube.com/watch?v=d-_7fHdNR_U",
         "percent": 100,
         "user": "BlueGamer"
+      },
+      {
+        "hz": 240,
+        "link": "https://www.youtube.com/watch?v=XiKOA8N31eM",
+        "percent": 100,
+        "user": "† 𓆩Lexy𓆪 †"
       }
     ],
     "verifier": {
@@ -21854,7 +21885,7 @@
       "verifier": "orizu"
     }
   },
-  "Lonely Abyss": {
+  "Lonely Abyss (TheRealPess)": {
     "percentToQualify": 66,
     "records": [],
     "verifier": {
@@ -22801,7 +22832,7 @@
       "verifier": "PrayogaGD"
     }
   },
-  "Maniac": {
+  "Maniac (Fubao)": {
     "percentToQualify": 67,
     "records": [],
     "verifier": {
