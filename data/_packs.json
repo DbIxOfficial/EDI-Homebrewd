@@ -974,7 +974,7 @@
     {
         "name": "Tidal Wave Pack I",
         "color": "#D4A017",
-        "textColor": "#D4A017",
+        "textColor": "#c6cf63",
         "levels": ["Tidal Wave Easy", "Shitty Tidal Wave", "Tidalmoment"]
     },
     {
@@ -1046,25 +1046,25 @@
     {
         "name": "Legendary Pack I",
         "color": "#F2B705",
-        "textColor": "#f2b705",
+        "textColor": "#ffffff",
         "levels": ["STRATUS", "CITYFADE", "Without U", "Grand Eclipse", "STARBREAKER"]
     },
         {
         "name": "Legendary Pack II",
         "color": "#F2B705",
-        "textColor": "#f2b705",
+        "textColor": "#ffffff",
         "levels": ["RIVERS OF NAZARETH", "Lotus (ZeroSR)", "Junk Realm", "ABSURDIA", "Pale Machine"]
     },
         {
         "name": "Legendary Pack III",
         "color": "#F2B705",
-        "textColor": "#f2b705",
+        "textColor": "#ffffff",
         "levels": ["Air Fryer", "REDEEMER", "Video", "Next Stage", "Controlled Chaos"]
     },
         {
         "name": "Legendary Pack IV",
         "color": "#F2B705",
-        "textColor": "#f2b705",
+        "textColor": "#ffffff",
         "levels": ["Waterfall", "DISSONANCE", "Echoes of Neon"]
     },
         {

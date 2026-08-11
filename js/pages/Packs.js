@@ -1,24 +1,27 @@
 import { store } from "../main.js";
+import { embed } from "../util.js";
 import { fetchPacks, fetchLevel, fetchRecords, calculatePackPoints } from "../content.js";
 import { score } from "../score.js";
 
 import Spinner from "../components/Spinner.js";
+import LevelAuthors from "../components/List/LevelAuthors.js";
 
 const dir = '/data';
 
 export default {
-    components: { Spinner },
+    components: { Spinner, LevelAuthors },
     data: () => ({
         packs: [],
         list: [],
-        levels: {},
+        levels: {},        // cached level data by name
         recordList: {},
         loading: true,
         selectedPack: null,
-        selectedLevel: null,
+        selectedLevelObj: null, // { name, index, points, level }
         loadingPackDetails: false,
-        sortBy: 'default', // 'default', 'alphabetical', 'pointsHigh', 'pointsLow', 'levelCountHigh', 'levelCountLow'
-        packPointsCache: {}, // Cache for instant display
+        packPointsCache: {},
+        searchQuery: '',
+        toggledShowcase: false,
     }),
     async mounted() {
         // Always use classic list for packs
@@ -32,19 +35,23 @@ export default {
         }
         this.list = classicList || [];
 
-        // Load records data
+        // Load records data (kept for the app; records are hidden per request)
         this.recordList = await fetchRecords();
 
         this.packs = await fetchPacks();
         
         // Pre-calculate all pack points for instant display
         for (const pack of this.packs) {
-            this.packPointsCache[pack.name] = await calculatePackPoints(pack.levels, this.list, this.recordList);
+            try {
+                this.packPointsCache[pack.name] = await calculatePackPoints(pack.levels, this.list, this.recordList);
+            } catch {
+                this.packPointsCache[pack.name] = 0;
+            }
         }
 
         this.loading = false;
 
-        // Check for pack query param
+        // Check for pack query param (optional)
         const queryPack = this.$route.query.pack;
         if (queryPack) {
             const pack = this.packs.find(p => p.name === queryPack);
@@ -54,6 +61,7 @@ export default {
         }
     },
     computed: {
+        // Levels for the selected pack (array of { name, index, points, level })
         packLevels() {
             if (!this.selectedPack) return [];
             return this.selectedPack.levels.map(name => {
@@ -72,48 +80,38 @@ export default {
             const total = this.packLevels.reduce((sum, l) => sum + l.points, 0);
             return Math.floor(total * 0.5);
         },
-        sortedPacks() {
-            const packsToSort = [...this.packs];
-            
-            switch(this.sortBy) {
-                case 'alphabetical':
-                    return packsToSort.sort((a, b) => a.name.localeCompare(b.name));
-                
-                case 'pointsHigh':
-                    return packsToSort.sort((a, b) => {
-                        const aPoints = this.packPointsCache[b.name] || 0;
-                        const bPoints = this.packPointsCache[a.name] || 0;
-                        return aPoints - bPoints;
-                    });
-                
-                case 'pointsLow':
-                    return packsToSort.sort((a, b) => {
-                        const aPoints = this.packPointsCache[a.name] || 0;
-                        const bPoints = this.packPointsCache[b.name] || 0;
-                        return aPoints - bPoints;
-                    });
-                
-                case 'levelCountHigh':
-                    return packsToSort.sort((a, b) => b.levels.length - a.levels.length);
-                
-                case 'levelCountLow':
-                    return packsToSort.sort((a, b) => a.levels.length - b.levels.length);
-                
-                case 'default':
-                default:
-                    return packsToSort;
-            }
+        filteredPacks() {
+            if (!this.searchQuery) return this.packs;
+            const q = this.searchQuery.toLowerCase();
+            return this.packs.filter(p => p.name.toLowerCase().includes(q));
+        },
+        // video URL for iframe (uses embed util)
+        video() {
+            if (!this.selectedLevelObj || !this.selectedLevelObj.level) return '';
+            const lvl = this.selectedLevelObj.level;
+            const chosen = this.toggledShowcase ? (lvl.showcase || lvl.verification || lvl.video) : (lvl.verification || lvl.showcase || lvl.video);
+            if (!chosen) return '';
+            return embed(chosen);
+        },
+        showShowcaseButton() {
+            return this.selectedLevelObj && this.selectedLevelObj.level && !!(this.selectedLevelObj.level.showcase);
         },
     },
     methods: {
         getPackPoints(packName) {
             return this.packPointsCache[packName] || 0;
         },
+
+        // Parse creators string into array
+        parseCreators(creatorsString) {
+            if (!creatorsString || typeof creatorsString !== 'string') return [];
+            return creatorsString.split(',').map(c => c.trim()).filter(c => c);
+        },
+
+        // select a pack object (lazy load individual levels into this.levels)
         async selectPack(pack) {
             this.selectedPack = pack;
-            this.selectedLevel = null;
-            
-            // Lazy load levels for this pack
+            this.selectedLevelObj = null;
             this.loadingPackDetails = true;
             try {
                 for (const levelName of pack.levels) {
@@ -127,37 +125,81 @@ export default {
             } finally {
                 this.loadingPackDetails = false;
             }
+
+            // Pick the level that appears earliest in the current list (lowest index).
+            // Falls back to the first pack.levels entry if none of the pack levels are in the list.
+            if (pack.levels && pack.levels.length > 0) {
+                let bestName = null;
+                let bestIdx = Infinity;
+
+                for (const levelName of pack.levels) {
+                    const idx = this.list.indexOf(levelName);
+                    if (idx >= 0 && idx < bestIdx) {
+                        bestIdx = idx;
+                        bestName = levelName;
+                    }
+                }
+
+                // fallback to first in pack array if nothing matched the list
+                if (!bestName) {
+                    bestName = pack.levels[0];
+                }
+
+                // pass the already-loaded level object when available to avoid refetching
+                await this.selectLevel({ name: bestName, level: this.levels[bestName] });
+            }
         },
-        selectLevel(level) {
-            this.selectedLevel = level;
-            // Navigate to list and select the level
-            this.$router.push({ path: '/', query: { level: level.name } });
+
+        // load and display level in center (List-style), WITHOUT rendering Records
+        async selectLevel(level) {
+            this.selectedLevelObj = null;
+            if (!level.level) {
+                try {
+                    const [loaded] = await fetchLevel(level.name);
+                    if (loaded) {
+                        this.levels[level.name] = loaded;
+                        level.level = loaded;
+                    }
+                } catch (e) {
+                    console.error('Failed to fetch level', level.name, e);
+                }
+            }
+
+            const lvl = level.level || this.levels[level.name];
+            if (!lvl) return;
+
+            const index = this.list.indexOf(lvl.name);
+            const points = index >= 0 ? score(index + 1, 100, lvl.percentToQualify) : 0;
+
+            this.selectedLevelObj = {
+                name: lvl.name,
+                index,
+                points,
+                level: lvl,
+            };
+
+            this.toggledShowcase = false;
         },
     },
     template: `
         <main v-if="loading">
-            <Spinner></Spinner>
+            <Spinner />
         </main>
+
         <main v-else class="page-packs">
+            <!-- LEFT: Packs list -->
             <div class="packs-container">
                 <h2>Packs</h2>
-                
-                <!-- Sort Controls -->
-                <div class="pack-sort-controls">
-                    <label for="sortSelect">Sort by:</label>
-                    <select v-model="sortBy" id="sortSelect" class="pack-sort-select">
-                        <option value="default">Default</option>
-                        <option value="alphabetical">Alphabetical</option>
-                        <option value="pointsHigh">Points (High to Low)</option>
-                        <option value="pointsLow">Points (Low to High)</option>
-                        <option value="levelCountHigh">Level Count (High to Low)</option>
-                        <option value="levelCountLow">Level Count (Low to High)</option>
-                    </select>
+
+                <div style="padding:0 0.5rem 0.5rem;">
+                    <input id="packSearch" v-model="searchQuery" placeholder="Search packs..." />
                 </div>
 
                 <div class="packs-list">
-                    <div v-for="pack in sortedPacks" :key="pack.name" class="pack-item" :class="{ active: selectedPack === pack }" @click="selectPack(pack)">
-                        <div class="pack-name" :style="{ color: pack.textColor }">{{ pack.name }}</div>
+                    <div v-for="pack in filteredPacks" :key="pack.name" class="pack-item" :class="{ active: selectedPack === pack }" @click="selectPack(pack)"
+                         :style="{ background: pack.gradient ? pack.gradient : (pack.color ? pack.color : 'var(--color-background)') }">
+                        <!-- per-pack text color applied inline; if no textColor uses site on-background -->
+                        <div class="pack-name" :style="{ color: pack.textColor ? pack.textColor : 'var(--color-on-background)' }">{{ pack.name }}</div>
                         <div class="pack-meta">
                             <span class="pack-levels-count">{{ pack.levels.length }} levels</span>
                             <span class="pack-points">{{ getPackPoints(pack.name) }} pts</span>
@@ -165,24 +207,78 @@ export default {
                     </div>
                 </div>
             </div>
-            <div class="pack-details-container">
-                <div v-if="selectedPack" class="pack-details">
-                    <h1 :style="{ color: selectedPack.textColor }">{{ selectedPack.name }}</h1>
-                    <p class="pack-reward">Pack Reward: {{ packReward }} points</p>
-                    <h3>Levels in Pack</h3>
-                    <div v-if="loadingPackDetails" style="display: flex; justify-content: center; padding: 20px;">
-                        <Spinner></Spinner>
+
+            <!-- CENTER: Level details (List-style) -->
+            <div class="level-container">
+                <div class="level" v-if="selectedLevelObj && selectedLevelObj.level">
+                    <h1>{{ selectedLevelObj.level.name }}</h1>
+                    <LevelAuthors :author="selectedLevelObj.level.author" :creators="selectedLevelObj.level.creators || []" :verifier="selectedLevelObj.level.verifier"></LevelAuthors>
+                    
+                    <!-- Pack creator info -->
+                    <div v-if="selectedPack && (selectedPack.creators || selectedPack.verifier || selectedPack.publisher)" class="pack-info">
+                        <h3>Pack Info</h3>
+                        <LevelAuthors 
+                            :author="selectedPack.author || selectedPack.publisher || 'Unknown'"
+                            :creators="parseCreators(selectedPack.creators)"
+                            :verifier="selectedPack.verifier || 'Unknown'"
+                        ></LevelAuthors>
                     </div>
-                    <ul v-else class="pack-levels">
-                        <li v-for="level in packLevels" :key="level.name" @click="selectLevel(level)">
-                            <span class="level-name">#{{ level.index + 1 }} {{ level.name }}</span>
-                            <span class="level-points">{{ level.points }} pts</span>
+
+                    <div class="video-controls">
+                        <button class="video-btn" :class="{ active: !toggledShowcase }" @click="toggledShowcase = false">Verification</button>
+                        <button v-if="showShowcaseButton" class="video-btn" :class="{ active: toggledShowcase }" @click="toggledShowcase = true">Showcase</button>
+                    </div>
+
+                    <iframe v-if="video" class="video" id="videoframe" :src="video" frameborder="0"></iframe>
+
+                    <ul class="stats">
+                        <li>
+                            <div class="type-title-sm">Points when completed</div>
+                            <p>{{ selectedLevelObj.points }}</p>
+                        </li>
+                        <li>
+                            <div class="type-title-sm">ID</div>
+                            <p>{{ selectedLevelObj.level.id }}</p>
+                        </li>
+                        <li v-if="selectedLevelObj.level.length">
+                            <div class="type-title-sm">Length</div>
+                            <p>{{ selectedLevelObj.level.length }}</p>
                         </li>
                     </ul>
                 </div>
-                <div v-else class="no-pack">
-                    <p>Select a pack to view details</p>
+
+                <!-- Pack placeholder / no selection -->
+                <div v-else class="level">
+                    <div v-if="selectedPack">
+                        <div v-if="loadingPackDetails" class="pack-loading"><Spinner/></div>
+                        <div v-else style="color:var(--color-on-background); margin-top:12px;">Select a level on the right to view details here.</div>
+                    </div>
+                    <div v-else style="height: 100%; justify-content: center; align-items: center; display: flex;">
+                        <p>Select a pack to view details</p>
+                    </div>
                 </div>
+            </div>
+
+            <!-- RIGHT: levels in pack -->
+            <div class="level-container">
+                <h2>Levels</h2>
+
+                <div v-if="!packLevels || packLevels.length === 0" class="level" style="justify-content: center; align-items: center;">
+                    <p>Pick a pack to see levels</p>
+                </div>
+
+                <table v-else class="list">
+                    <tr v-for="level in packLevels" :key="level.name" :class="{ active: selectedLevelObj && selectedLevelObj.name === level.name }">
+                        <td class="rank">
+                            <p class="type-label-lg">#{{ level.index + 1 }}</p>
+                        </td>
+                        <td class="level" :class="{ active: selectedLevelObj && selectedLevelObj.name === level.name }">
+                            <button class="level-btn" @click="selectLevel(level)">
+                                <span class="type-label-lg">{{ level.name }}</span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </main>
     `,
